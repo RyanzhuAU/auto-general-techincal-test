@@ -36,7 +36,10 @@ public class ToDoItemServiceTest {
     private Integer itemId;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
+         /*
+         TODO: Actually we should use H2 db for this kind of test. As the time limitation, I think it should be enough to use this kind of test.
+         */
         toDoItemService = new ToDoItemServiceImpl(toDoItemRepository);
 
         ToDoItem toDoItem = new ToDoItem("test1");
@@ -57,7 +60,7 @@ public class ToDoItemServiceTest {
         long itemId = this.toDoItemRepository.count() + 100;
 
         try {
-            toDoItemService.getToDoItem((int)itemId);
+            toDoItemService.getToDoItem((int) itemId);
         } catch (ToDoItemNotFoundException e) {
             ToDoItemNotFoundErrorRep notFoundError = e.getNotFoundError();
             assertThat(notFoundError.getName(), is(Constants.TODO_ITEM_NOT_FOUND_ERROR_NAME));
@@ -141,7 +144,7 @@ public class ToDoItemServiceTest {
         long itemId = this.toDoItemRepository.count() + 100;
 
         try {
-            toDoItemService.updateToDoItem((int)itemId, json);
+            toDoItemService.updateToDoItem((int) itemId, json);
         } catch (ToDoItemNotFoundException e) {
             ToDoItemNotFoundErrorRep notFoundError = e.getNotFoundError();
             assertThat(notFoundError.getName(), is(Constants.TODO_ITEM_NOT_FOUND_ERROR_NAME));

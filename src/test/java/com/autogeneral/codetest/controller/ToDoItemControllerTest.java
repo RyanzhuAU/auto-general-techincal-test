@@ -41,6 +41,9 @@ public class ToDoItemControllerTest {
 
     @Before
     public void setup() throws Exception {
+        /*
+         TODO: Actually we should use H2 db for this kind of test. As the time limitation, I think it should be enough to use this kind of test.
+         */
         ToDoItemAddRequestRep addRequestRep = new ToDoItemAddRequestRep("test 1");
 
         MvcResult result = this.mockMvc.perform(post("/todo")
