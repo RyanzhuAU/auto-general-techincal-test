@@ -13,7 +13,7 @@ import java.util.TimeZone;
 @Data
 public class ToDoItemRep {
 
-    private Integer id;
+    private long id;
 
     private String text;
 

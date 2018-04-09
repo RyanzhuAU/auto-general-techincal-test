@@ -32,9 +32,9 @@ public class ToDoItemController {
      * @return state string and status 200, or status 400
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity getState(@PathVariable("id") Integer itemId) {
+    public ResponseEntity getState(@PathVariable("id") String itemId) {
         try {
-            ToDoItem item = toDoItemService.getToDoItem(Integer.valueOf(itemId));
+            ToDoItem item = toDoItemService.getToDoItem(Long.valueOf(itemId));
 
             return new ResponseEntity(new ToDoItemRep(item), HttpStatus.OK);
         } catch (ToDoItemNotFoundException e) {
@@ -80,9 +80,9 @@ public class ToDoItemController {
      * @return status 200 or status 400
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<ToDoItem> deleteChar(@RequestBody String json, @PathVariable("id") Integer itemId) {
+    public ResponseEntity<ToDoItem> deleteChar(@RequestBody String json, @PathVariable("id") String itemId) {
         try {
-            ToDoItem item = toDoItemService.updateToDoItem(itemId, json);
+            ToDoItem item = toDoItemService.updateToDoItem(Long.valueOf(itemId), json);
 
             return new ResponseEntity(new ToDoItemRep(item), HttpStatus.OK);
         } catch (ToDoItemNotFoundException e) {

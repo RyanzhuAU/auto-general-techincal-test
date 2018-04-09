@@ -39,7 +39,7 @@ public class ToDoItemServiceImpl implements ToDoItemService {
      * @return the todo item
      * @throws Exception
      */
-    public ToDoItem getToDoItem(Integer itemId) throws Exception {
+    public ToDoItem getToDoItem(long itemId) throws Exception {
         ToDoItem item = toDoItemRepository.findByItemId(itemId);
 
         if (checkItemExist(item, itemId)) {
@@ -63,7 +63,7 @@ public class ToDoItemServiceImpl implements ToDoItemService {
         return item;
     }
 
-    public ToDoItem updateToDoItem(Integer itemId, String json) throws Exception {
+    public ToDoItem updateToDoItem(long itemId, String json) throws Exception {
 
         ToDoItem item = toDoItemRepository.findByItemId(itemId);
 
@@ -90,7 +90,7 @@ public class ToDoItemServiceImpl implements ToDoItemService {
 
     }
 
-    private Boolean checkItemExist(ToDoItem item, Integer itemId) throws Exception {
+    private Boolean checkItemExist(ToDoItem item, long itemId) throws Exception {
         if (item == null) {
             String errorMsg = String.format(Constants.TODO_ITEM_NOT_FOUND_ERROR_MESSAGE, itemId);
             ToDoItemNotFoundErrorDetailRep errorDetailRep = new ToDoItemNotFoundErrorDetailRep(errorMsg);

@@ -33,7 +33,7 @@ public class ToDoItemServiceTest {
     private ObjectMapper objectMapper;
 
     private ToDoItemService toDoItemService;
-    private Integer itemId;
+    private long itemId;
 
     @Before
     public void setup() {

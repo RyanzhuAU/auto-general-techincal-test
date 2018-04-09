@@ -37,7 +37,7 @@ public class ToDoItemControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private Integer testItemId;
+    private long testItemId;
 
     @Before
     public void setup() throws Exception {

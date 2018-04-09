@@ -8,10 +8,10 @@ import com.autogeneral.codetest.domain.ToDoItem;
 
 public interface ToDoItemService {
 
-    ToDoItem getToDoItem(Integer itemId) throws Exception;
+    ToDoItem getToDoItem(long itemId) throws Exception;
 
     ToDoItem createToDoItem(String json) throws Exception;
 
-    ToDoItem updateToDoItem(Integer itemId, String json) throws Exception;
+    ToDoItem updateToDoItem(long itemId, String json) throws Exception;
 
 }

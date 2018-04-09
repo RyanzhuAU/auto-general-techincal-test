@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ToDoItemRepository extends CrudRepository<ToDoItem, String> {
 
-    ToDoItem findByItemId(Integer itemId);
+    ToDoItem findByItemId(long itemId);
 
     ToDoItem save(ToDoItem item);
 }

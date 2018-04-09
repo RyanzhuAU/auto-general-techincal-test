@@ -15,7 +15,7 @@ import java.util.Date;
 public class ToDoItem {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer itemId;
+    private long itemId;
 
     private String text;
 
