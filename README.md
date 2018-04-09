@@ -6,7 +6,7 @@ How to install:
 
 2. The required database is MySQL.
 
-3. Go to {application folder}\src\main\resources\, modify the file "application.properties". Change the database url info and username/password.
+3. Go to {application folder}\src\main\resources\, modify the file "application.properties". Change the database connection info and database username/password.
 
 4. Use maven to build this application. Go to the application folder and type mvn install.
 
