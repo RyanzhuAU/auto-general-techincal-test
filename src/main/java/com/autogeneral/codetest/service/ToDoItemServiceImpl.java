@@ -26,6 +26,8 @@ public class ToDoItemServiceImpl implements ToDoItemService {
     @Autowired
     private ToDoItemRepository toDoItemRepository;
 
+    private ObjectMapper mapper = new ObjectMapper();
+
     public ToDoItemServiceImpl(ToDoItemRepository toDoItemRepository) {
         this.toDoItemRepository = toDoItemRepository;
     }
@@ -51,8 +53,7 @@ public class ToDoItemServiceImpl implements ToDoItemService {
     }
 
     public ToDoItem createToDoItem(String json) throws Exception {
-        ObjectMapper om = new ObjectMapper();
-        ToDoItemAddRequestRep addRequest = om.readValue(json, ToDoItemAddRequestRep.class);
+        ToDoItemAddRequestRep addRequest = this.mapper.readValue(json, ToDoItemAddRequestRep.class);
         String text = addRequest.getText();
         ToDoItem item = new ToDoItem(text);
 
@@ -68,8 +69,7 @@ public class ToDoItemServiceImpl implements ToDoItemService {
         ToDoItem item = toDoItemRepository.findByItemId(itemId);
 
         if (checkItemExist(item, itemId)) {
-            ObjectMapper om = new ObjectMapper();
-            ToDoItemUpdateRequestRep updateRequest = om.readValue(json, ToDoItemUpdateRequestRep.class);
+            ToDoItemUpdateRequestRep updateRequest = this.mapper.readValue(json, ToDoItemUpdateRequestRep.class);
 
             String text = updateRequest.getText();
             Boolean isCompleted = updateRequest.getIsCompleted();
