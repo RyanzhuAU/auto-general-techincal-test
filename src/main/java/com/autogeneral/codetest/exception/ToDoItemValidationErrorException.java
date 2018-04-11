@@ -1,4 +1,4 @@
-package com.autogeneral.codetest.Exception;
+package com.autogeneral.codetest.exception;
 
 import com.autogeneral.codetest.representation.ToDoItemValidationErrorRep;
 import lombok.Data;

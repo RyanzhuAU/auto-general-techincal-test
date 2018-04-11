@@ -1,8 +1,10 @@
 package com.autogeneral.codetest.domain;
 
+import com.autogeneral.codetest.converter.LocalDateTimeConverter;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -21,7 +23,8 @@ public class ToDoItem {
 
     private Boolean isCompleted;
 
-    private Date createAt;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime createAt;
 
     public ToDoItem() {
 
@@ -42,7 +45,7 @@ public class ToDoItem {
         }
 
         if (createAt == null) {
-            this.createAt = new Date();
+            this.createAt = LocalDateTime.now();
         }
     }
 }

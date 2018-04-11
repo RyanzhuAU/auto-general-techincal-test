@@ -3,8 +3,7 @@ package com.autogeneral.codetest.representation;
 import com.autogeneral.codetest.domain.ToDoItem;
 import lombok.Data;
 
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by ryan.zhu on 7/4/2018.
@@ -30,8 +29,7 @@ public class ToDoItemRep {
         this.text = item.getText();
         this.isCompleted = item.getIsCompleted();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        this.createAt = format.format(item.getCreateAt()).toString();
+        this.createAt = item.getCreateAt().format(DateTimeFormatter.ISO_DATE_TIME);
+
     }
 }

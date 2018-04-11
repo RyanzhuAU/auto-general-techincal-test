@@ -1,6 +1,6 @@
 package com.autogeneral.codetest.controller;
 
-import com.autogeneral.codetest.Exception.ToDoItemValidationErrorException;
+import com.autogeneral.codetest.exception.ToDoItemValidationErrorException;
 import com.autogeneral.codetest.representation.BalanceTestResultRep;
 import com.autogeneral.codetest.service.TaskService;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class TaskController {
      * @return state string and status 200, or status 400
      */
     @RequestMapping(value = "/validateBrackets", method = RequestMethod.GET)
-    public ResponseEntity<BalanceTestResultRep> getState(@RequestParam("input") String input) {
+    public ResponseEntity<BalanceTestResultRep> validateBrackets(@RequestParam("input") String input) {
         try {
             Boolean isBalance = taskService.validateBrackets(input);
             BalanceTestResultRep result = new BalanceTestResultRep(input, isBalance);

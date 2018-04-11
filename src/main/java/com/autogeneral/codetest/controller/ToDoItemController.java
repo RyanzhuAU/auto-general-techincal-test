@@ -1,8 +1,8 @@
 package com.autogeneral.codetest.controller;
 
-import com.autogeneral.codetest.Exception.ToDoItemNotFoundException;
-import com.autogeneral.codetest.Exception.ToDoItemValidationErrorException;
 import com.autogeneral.codetest.domain.ToDoItem;
+import com.autogeneral.codetest.exception.ToDoItemNotFoundException;
+import com.autogeneral.codetest.exception.ToDoItemValidationErrorException;
 import com.autogeneral.codetest.representation.ToDoItemRep;
 import com.autogeneral.codetest.service.ToDoItemService;
 import org.slf4j.Logger;
@@ -29,10 +29,10 @@ public class ToDoItemController {
      * GET /todo/{id} - returns the todo item
      *
      * @param itemId
-     * @return state string and status 200, or status 400
+     * @return todo item and status 200, or status 400
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity getState(@PathVariable("id") String itemId) {
+    public ResponseEntity getToDoItem(@PathVariable("id") String itemId) {
         try {
             ToDoItem item = toDoItemService.getToDoItem(Long.valueOf(itemId));
 
@@ -58,7 +58,7 @@ public class ToDoItemController {
      * @return JSON - ToDoItem object and status 200, or status 400
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity setChars(@RequestBody String json) {
+    public ResponseEntity createToDoItem(@RequestBody String json) {
         try {
             ToDoItem item = toDoItemService.createToDoItem(json);
 
@@ -80,7 +80,7 @@ public class ToDoItemController {
      * @return status 200 or status 400
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<ToDoItem> deleteChar(@RequestBody String json, @PathVariable("id") String itemId) {
+    public ResponseEntity<ToDoItem> updateToDoItem(@RequestBody String json, @PathVariable("id") String itemId) {
         try {
             ToDoItem item = toDoItemService.updateToDoItem(Long.valueOf(itemId), json);
 

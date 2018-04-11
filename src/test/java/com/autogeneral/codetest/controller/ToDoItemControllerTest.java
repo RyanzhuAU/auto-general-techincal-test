@@ -1,6 +1,8 @@
 package com.autogeneral.codetest.controller;
 
+import com.autogeneral.codetest.Application;
 import com.autogeneral.codetest.Constants;
+import com.autogeneral.codetest.H2JpaConfig;
 import com.autogeneral.codetest.repository.ToDoItemRepository;
 import com.autogeneral.codetest.representation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {Application.class, H2JpaConfig.class})
 @AutoConfigureMockMvc
 public class ToDoItemControllerTest {
     @Autowired
@@ -41,9 +43,6 @@ public class ToDoItemControllerTest {
 
     @Before
     public void setup() throws Exception {
-        /*
-         TODO: Actually we should use H2 db for this kind of test. As the time limitation, I think it should be enough to use this kind of test.
-         */
         ToDoItemAddRequestRep addRequestRep = new ToDoItemAddRequestRep("test 1");
 
         MvcResult result = this.mockMvc.perform(post("/todo")

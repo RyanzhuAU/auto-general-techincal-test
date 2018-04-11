@@ -1,9 +1,11 @@
 package com.autogeneral.codetest.service;
 
+import com.autogeneral.codetest.Application;
 import com.autogeneral.codetest.Constants;
-import com.autogeneral.codetest.Exception.ToDoItemNotFoundException;
-import com.autogeneral.codetest.Exception.ToDoItemValidationErrorException;
+import com.autogeneral.codetest.H2JpaConfig;
 import com.autogeneral.codetest.domain.ToDoItem;
+import com.autogeneral.codetest.exception.ToDoItemNotFoundException;
+import com.autogeneral.codetest.exception.ToDoItemValidationErrorException;
 import com.autogeneral.codetest.repository.ToDoItemRepository;
 import com.autogeneral.codetest.representation.ToDoItemAddRequestRep;
 import com.autogeneral.codetest.representation.ToDoItemNotFoundErrorRep;
@@ -24,7 +26,7 @@ import static org.hamcrest.Matchers.is;
  * Created by ryan.zhu on 7/4/2018.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {Application.class, H2JpaConfig.class})
 public class ToDoItemServiceTest {
     @Autowired
     private ToDoItemRepository toDoItemRepository;
@@ -37,9 +39,6 @@ public class ToDoItemServiceTest {
 
     @Before
     public void setup() {
-         /*
-         TODO: Actually we should use H2 db for this kind of test. As the time limitation, I think it should be enough to use this kind of test.
-         */
         toDoItemService = new ToDoItemServiceImpl(toDoItemRepository);
 
         ToDoItem toDoItem = new ToDoItem("test1");

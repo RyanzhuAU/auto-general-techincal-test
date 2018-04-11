@@ -21,30 +21,31 @@ public class TaskServiceImpl implements TaskService {
         if (Utils.inputTextValidation(input)) {
             Stack<Character> stack = new Stack<>();
 
-            char[] bytes = input.toCharArray();
             /*
              * Compare with the character in the stack
              */
-            for (int i = 0; i < bytes.length; ++i) {
-                Character c = bytes[i];
-                if (brackets.indexOf(c) >= 0) {
-                    if (stack.isEmpty()) {
-                        stack.push(c);
-                    }
-                    else {
-                        Character c1 = stack.peek();
-                        Character c2 = bytes[i];
+            input.chars()
+                    .mapToObj( c -> (char) c)
+                    .forEach( c -> {
+                            if (brackets.indexOf(c) >= 0) {
+                                if (stack.isEmpty()) {
+                                    stack.push(c);
+                                }
+                                else {
+                                    Character c1 = stack.peek();
+                                    Character c2 = c;
 
-                        if ((StringUtils.equals(c1.toString(), "(") && StringUtils.equals(c2.toString(), ")"))
-                                || (StringUtils.equals(c1.toString(), "[") && StringUtils.equals(c2.toString(), "]"))
-                                || (StringUtils.equals(c1.toString(), "{") && StringUtils.equals(c2.toString(), "}"))) {
-                            stack.pop();
-                        } else {
-                            stack.push(c2);
-                        }
-                    }
-                }
-            }
+                                    if ((StringUtils.equals(c1.toString(), "(") && StringUtils.equals(c2.toString(), ")"))
+                                            || (StringUtils.equals(c1.toString(), "[") && StringUtils.equals(c2.toString(), "]"))
+                                            || (StringUtils.equals(c1.toString(), "{") && StringUtils.equals(c2.toString(), "}"))) {
+                                        stack.pop();
+                                    } else {
+                                        stack.push(c2);
+                                    }
+                                }
+                            }
+                        });
+
             isBalance = stack.isEmpty();
         }
 

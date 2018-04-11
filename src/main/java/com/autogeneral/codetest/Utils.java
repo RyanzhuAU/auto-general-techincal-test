@@ -1,6 +1,6 @@
 package com.autogeneral.codetest;
 
-import com.autogeneral.codetest.Exception.ToDoItemValidationErrorException;
+import com.autogeneral.codetest.exception.ToDoItemValidationErrorException;
 import com.autogeneral.codetest.representation.ToDoItemValidationErrorDetailRep;
 import com.autogeneral.codetest.representation.ToDoItemValidationErrorRep;
 

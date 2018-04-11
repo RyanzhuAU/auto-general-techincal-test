@@ -1,7 +1,7 @@
 package com.autogeneral.codetest.service;
 
 import com.autogeneral.codetest.Constants;
-import com.autogeneral.codetest.Exception.ToDoItemNotFoundException;
+import com.autogeneral.codetest.exception.ToDoItemNotFoundException;
 import com.autogeneral.codetest.Utils;
 import com.autogeneral.codetest.domain.ToDoItem;
 import com.autogeneral.codetest.repository.ToDoItemRepository;
