@@ -2,6 +2,8 @@ package com.autogeneral.codetest.service;
 
 import com.autogeneral.codetest.Utils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Stack;
@@ -13,10 +15,20 @@ import java.util.Stack;
 @Service
 public class TaskServiceImpl implements TaskService {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * This function is used to check if the input is validated with bracket balance.
+     * @param input
+     * @return
+     * @throws Exception
+     */
     public Boolean validateBrackets(String input) throws Exception {
         Boolean isBalance = false;
 
         String brackets = "()[]{}";
+
+        logger.info("Start validate brackets for the input ", input);
 
         if (Utils.inputTextValidation(input)) {
             Stack<Character> stack = new Stack<>();

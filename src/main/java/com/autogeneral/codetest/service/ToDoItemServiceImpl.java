@@ -35,15 +35,14 @@ public class ToDoItemServiceImpl implements ToDoItemService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * GET /state - returns the current state
-     *
      * @param itemId
      * @return the todo item
      * @throws Exception
      */
     public ToDoItem getToDoItem(long itemId) throws Exception {
-        ToDoItem item = toDoItemRepository.findByItemId(itemId);
+        logger.info("Start getting selected todo item");
 
+        ToDoItem item = toDoItemRepository.findByItemId(itemId);
         if (checkItemExist(item, itemId)) {
             String text = item.getText();
             Utils.inputTextValidation(text);
@@ -52,7 +51,14 @@ public class ToDoItemServiceImpl implements ToDoItemService {
         return item;
     }
 
+    /**
+     * @param json
+     * @return the new todo item
+     * @throws Exception
+     */
     public ToDoItem createToDoItem(String json) throws Exception {
+        logger.info("Start creating the new todo item.");
+
         ToDoItemAddRequestRep addRequest = this.mapper.readValue(json, ToDoItemAddRequestRep.class);
         String text = addRequest.getText();
         ToDoItem item = new ToDoItem(text);
@@ -64,7 +70,14 @@ public class ToDoItemServiceImpl implements ToDoItemService {
         return item;
     }
 
+    /**
+     * @param itemId
+     * @param json
+     * @return the updated to do item
+     * @throws Exception
+     */
     public ToDoItem updateToDoItem(long itemId, String json) throws Exception {
+        logger.info("Start updating the selected todo item.");
 
         ToDoItem item = toDoItemRepository.findByItemId(itemId);
 
@@ -90,7 +103,14 @@ public class ToDoItemServiceImpl implements ToDoItemService {
 
     }
 
-    private Boolean checkItemExist(ToDoItem item, long itemId) throws Exception {
+    /**
+     * This function is used to check if the item exist and handle the exception.
+     * @param item
+     * @param itemId
+     * @return true if the item is existed, or throw ToDoItemNotFoundException.
+     * @throws ToDoItemNotFoundException
+     */
+    private Boolean checkItemExist(ToDoItem item, long itemId) throws ToDoItemNotFoundException {
         if (item == null) {
             String errorMsg = String.format(Constants.TODO_ITEM_NOT_FOUND_ERROR_MESSAGE, itemId);
             ToDoItemNotFoundErrorDetailRep errorDetailRep = new ToDoItemNotFoundErrorDetailRep(errorMsg);
